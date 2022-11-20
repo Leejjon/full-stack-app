@@ -1,0 +1,60 @@
+import express, {NextFunction, Request, RequestHandler, Response} from "express";
+import {IsString} from "class-validator";
+import cors from "cors";
+import {plainToClass} from "class-transformer";
+
+const path = require('path');
+const app = express();
+
+class RequestBody {
+    @IsString()
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+
+class ResponseBody {
+    @IsString()
+    message: string;
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+// Enable cors to be able to reach the backend on localhost:8080 while running React.js in dev mode on localhost:3000
+// You might want to disbale this on production.
+app.use(cors());
+app.use(express.json() as RequestHandler);
+
+app.post('/api', function(req: Request, res: Response) {
+    let body = plainToClass(RequestBody, req.body as Object);
+    const responseBody: ResponseBody = {message: "Hello" + body.name};
+    res.contentType('application/json');
+    res.status(200);
+    res.send(responseBody);
+});
+
+// This code makes sure that any request that does not matches a static file
+// in the build folder, will just serve index.html. Client side routing is
+// going to make sure that the correct content will be loaded.
+app.use((req: Request, res: Response, next: NextFunction) => {
+    if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
+        next();
+    } else {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    }
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Start the server
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
+    console.log('Press Ctrl+C to quit.');
+});
