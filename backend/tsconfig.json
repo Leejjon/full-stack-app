@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-      "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true // If you disable this, you'll get an error:
+    // TypeError: (0 , s.default) is not a function
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],

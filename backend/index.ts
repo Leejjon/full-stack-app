@@ -1,27 +1,10 @@
 import express, {NextFunction, Request, RequestHandler, Response} from "express";
-import {IsString} from "class-validator";
 import cors from "cors";
 import {plainToClass} from "class-transformer";
+import {RequestBody, ResponseBody} from "common";
 
 const path = require('path');
 const app = express();
-
-class RequestBody {
-    @IsString()
-    name: string;
-
-    constructor(name: string) {
-        this.name = name;
-    }
-}
-
-class ResponseBody {
-    @IsString()
-    message: string;
-    constructor(message: string) {
-        this.message = message;
-    }
-}
 
 // Enable cors to be able to reach the backend on localhost:8080 while running React.js in dev mode on localhost:3000
 // You might want to disbale this on production.
@@ -30,7 +13,7 @@ app.use(express.json() as RequestHandler);
 
 app.post('/api', function(req: Request, res: Response) {
     let body = plainToClass(RequestBody, req.body as Object);
-    const responseBody: ResponseBody = {message: "Hello" + body.name};
+    const responseBody: ResponseBody = {message: "Hello, " + body.name};
     res.contentType('application/json');
     res.status(200);
     res.send(responseBody);

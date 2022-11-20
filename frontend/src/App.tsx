@@ -1,24 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
-import {IsString, validate} from "class-validator";
+import {validate} from "class-validator";
 import {plainToClass} from "class-transformer";
-
-class ResponseBody {
-    @IsString()
-    message: string;
-    constructor(message: string) {
-        this.message = message;
-    }
-}
-
-class RequestBody {
-    @IsString()
-    name: string;
-
-    constructor(name: string) {
-        this.name = name;
-    }
-}
+import {RequestBody, ResponseBody} from "common";
 
 function App() {
     const responseBody: ResponseBody = { message: "No response yet"};

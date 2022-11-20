@@ -1,0 +1,8 @@
+.idea/
+frontend/build/
+frontend/node_modules/
+backend/dist/
+backend/node_modules/
+common/node_modules/
+common/dist/
+node_modules/
