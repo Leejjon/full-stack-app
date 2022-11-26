@@ -1,5 +1,5 @@
 {
   "name": "full-stack-app",
   "private": true,
-  "workspaces": ["frontend", "backend", "common"]
+  "workspaces": ["common"]
 }
