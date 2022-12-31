@@ -7,7 +7,7 @@ module.exports = {
     mode: "production",
     externals: [nodeExternals()],
     resolve: {
-        extensions: ['.ts']
+        extensions: ['.ts'],
     },
     module: {
         rules: [
