@@ -2,6 +2,7 @@ import express, {NextFunction, Request, RequestHandler, Response} from "express"
 import cors from "cors";
 import {plainToClass} from "class-transformer";
 import {RequestBody, ResponseBody} from "common";
+import {validate} from "class-validator";
 
 const path = require('path');
 const app = express();
@@ -11,12 +12,17 @@ const app = express();
 app.use(cors());
 app.use(express.json() as RequestHandler);
 
-app.post('/api', function(req: Request, res: Response) {
+app.post('/api', async function(req: Request, res: Response) {
     let body = plainToClass(RequestBody, req.body as Object);
-    const responseBody: ResponseBody = {message: "Hello, " + body.name};
-    res.contentType('application/json');
-    res.status(200);
-    res.send(responseBody);
+    let validationErrors = await validate(body);
+    if (validationErrors.length == 0) {
+        const responseBody: ResponseBody = {message: "Hello, " + body.name};
+        res.contentType('application/json');
+        res.status(200);
+        res.send(responseBody);
+    } else {
+        res.sendStatus(400);
+    }
 });
 
 // This code makes sure that any request that does not matches a static file

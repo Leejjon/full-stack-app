@@ -1,4 +1,4 @@
-import {IsString} from "class-validator";
+import {IsString, Length} from "class-validator";
 
 export class ResponseBody {
     @IsString()
@@ -9,6 +9,7 @@ export class ResponseBody {
 }
 
 export class RequestBody {
+    @Length(1, 30)
     @IsString()
     name: string;
 

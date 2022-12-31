@@ -29,8 +29,13 @@ function App() {
             method: "POST",
             body: JSON.stringify(requestBody)
         })
-            .then((response) => response.json())
-            .then(handleJsonFromApi)
+            .then((response) => {
+                if (response.status === 200) {
+                    response.json().then(handleJsonFromApi);
+                } else {
+                    setResponse({message: "The server denied our request."})
+                }
+            })
             .catch(() => { setResponse({ message: "Failed fetching from the API"}) })
     }
 
