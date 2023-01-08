@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
       "experimentalDecorators": true,
+      "composite": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],

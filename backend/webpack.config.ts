@@ -14,7 +14,7 @@ module.exports = {
     module: {
         rules: [
             // all files with a `.ts` extension will be handled by `ts-loader`
-            { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/}
+            { test: /\.ts$/, use: {loader: 'ts-loader', options: {transpileOnly: false, projectReferences: true}}, exclude: /node_modules/}
         ]
     },
     plugins: [new copyFiles({ patterns: [{ from: '../frontend/build', to: 'build'}]})],
