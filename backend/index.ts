@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json() as RequestHandler);
 
 app.post('/api', async function(req: Request, res: Response) {
+    console.log(RequestBody);
     let body = plainToClass(RequestBody, req.body as Object);
     let validationErrors = await validate(body);
     if (validationErrors.length == 0) {
