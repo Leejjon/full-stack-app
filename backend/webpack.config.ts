@@ -14,10 +14,10 @@ module.exports = {
     module: {
         rules: [
             // all files with a `.ts` extension will be handled by `ts-loader`
-            { test: /\.ts$/, use: {loader: 'ts-loader', options: {transpileOnly: false, projectReferences: true}}, exclude: /node_modules/}
+            {test: /\.ts$/, use: {loader: 'ts-loader', options: {projectReferences: true}}, exclude: /node_modules/}
         ]
     },
-    plugins: [new copyFiles({ patterns: [{ from: '../frontend/build', to: 'build'}]})],
+    plugins: [new copyFiles({patterns: [{from: '../frontend/build', to: 'build'}]})],
     output: {
         path: path2.resolve(__dirname, 'dist'),
         filename: 'index.js'
