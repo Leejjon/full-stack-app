@@ -10,6 +10,7 @@ function App() {
     const [response, setResponse] = useState<ResponseBody>(responseBody);
 
     async function handleJsonFromApi(json: any) {
+        console.log(ResponseBody);
         let body = plainToClass(ResponseBody, json as Object);
         let validationErrors = await validate(body);
         if (validationErrors.length > 0) {
