@@ -10,8 +10,10 @@ function App() {
     const [response, setResponse] = useState<ResponseBody>(responseBody);
 
     async function handleJsonFromApi(json: any) {
+        console.log(ResponseBody);
         let body = plainToClass(ResponseBody, json as Object);
         let validationErrors = await validate(body);
+        console.log(validationErrors);
         if (validationErrors.length > 0) {
             setResponse({message: `The server retrieved an object with ${validationErrors.length} validation errors.`})
         } else {
