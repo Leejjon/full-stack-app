@@ -5,7 +5,7 @@
     "esModuleInterop": true // If you disable this, you'll get an error:
     // TypeError: (0 , s.default) is not a function
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"],
   "target": "es2017",
   "module": "commonjs",

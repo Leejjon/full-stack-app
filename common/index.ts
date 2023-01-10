@@ -1,6 +1,7 @@
 import {IsString, Length} from "class-validator";
 
 export class ResponseBody {
+    @Length(1,100)
     @IsString()
     message: string;
     constructor(message: string) {

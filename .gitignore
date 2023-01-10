@@ -4,5 +4,7 @@ frontend/node_modules/
 backend/dist/
 backend/node_modules/
 common/node_modules/
-common/dist/
+common/tsconfig.tsbuildinfo
+common/index.js
+common/index.d.ts
 node_modules/
