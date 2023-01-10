@@ -13,11 +13,10 @@ app.use(cors());
 app.use(express.json() as RequestHandler);
 
 app.post('/api', async function(req: Request, res: Response) {
-    console.log(RequestBody);
     let body = plainToClass(RequestBody, req.body as Object);
     let validationErrors = await validate(body);
     if (validationErrors.length == 0) {
-        const responseBody: ResponseBody = {message: "Hello, " + body.name + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"};
+        const responseBody: ResponseBody = {message: "Hello, " + body.name};
         res.contentType('application/json');
         res.status(200);
         res.send(responseBody);

@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "declaration": true,
-    "composite": true
+    "declaration": true
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules"
