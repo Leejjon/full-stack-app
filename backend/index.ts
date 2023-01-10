@@ -16,7 +16,7 @@ app.post('/api', async function(req: Request, res: Response) {
     let body = plainToClass(RequestBody, req.body as Object);
     let validationErrors = await validate(body);
     if (validationErrors.length == 0) {
-        const responseBody: ResponseBody = {message: "Hello, " + body.name};
+        const responseBody: ResponseBody = new ResponseBody("Hello, " + body.name);
         res.contentType('application/json');
         res.status(200);
         res.send(responseBody);
